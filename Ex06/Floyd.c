@@ -56,22 +56,24 @@ int main() {
 
     for( i = 0; i < n; i++ ) {
         for( j = 0; j < n; j++ ) {
-            if( Data[i][j] < minDist ) {
+            if( Data[i][j] <= minDist ) {
                 minDist = Data[i][j];
                 minVertex1 = i;
                 minVertex2 = j;
+                //printf("( %d, %d ) min %d\n", minVertex1+1, minVertex2+1, minDist);
             }
             
             if( Data[i][j] > maxDist ) {
                 maxDist = Data[i][j];
                 maxVertex1 = i;
                 maxVertex2 = j;
+                //printf("( %d, %d ) max %d\n", maxVertex1+1, maxVertex2+1, maxDist);
             }
         }
     }
 
-    printf("min: %d  (%d, %d)\n", minDist, minVertex1+1, minVertex2+1);
-    printf("max: %d  (%d, %d)\n", maxDist, maxVertex1+1, maxVertex2+1);
+    //printf("min: %d  (%d, %d)\n", minDist, minVertex1+1, minVertex2+1);
+    //printf("max: %d  (%d, %d)\n", maxDist, maxVertex1+1, maxVertex2+1);
      
     /* free allocated memory*/
     for(i = 0; i < n; i++) {
@@ -86,7 +88,7 @@ int Floyd(int D_ij, int D_ik, int D_kj) {
     /* Arguments D_ij, D_ik, D_kj means D^{k-1}[i][j], D^{k-1}[i][k],D^{k-1}[k][j] at the pseudo code. */
     int Dk_ij; /* D^k[i][j] */
 
-    Dk_ij = MIN( D_ij, D_ik + D_kj);
+    Dk_ij = MIN( D_ij, D_ik + D_kj );
 
     return Dk_ij;
 }
