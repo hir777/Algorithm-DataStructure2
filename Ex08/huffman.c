@@ -176,8 +176,8 @@ int main() {
 
 void construct_2(Node *A, int n) { // 無秩序に並んだ配列をヒープにする
     int i, j;
-    for( i = n / 2; i >= 1; i--) {
-        upheap(A, i);
+    for( i = n / 2; i >= 1; i-- ) {
+        downheap(A, i, n);
     }
 }
 
@@ -197,7 +197,7 @@ void downheap(Node *A, int k, int n) {
             }
         }
 
-        if( v.count < A[j].count || (v.count == A[j].count && v.word > A[j].word))
+        if( v.count < A[j].count || ( v.count == A[j].count && v.word < A[j].word ))
             break;
 
         A[k] = A[j];
@@ -213,8 +213,8 @@ Node delete_min(Node *A, int *i) {
     n = *i;
 
     A[1] = A[n];
-    downheap(A, 1, n-1); /* [ Complete Here!! (Write function call) ] */; //ヒープに戻す（Ex02とほぼ同じ）
-
+    //downheap(A, 1, n); /* [ Complete Here!! (Write function call) ] */; //ヒープに戻す（Ex02とほぼ同じ）
+    downheap(A, 1, n-1);
     (*i)--;
     return v;
 }
@@ -223,7 +223,7 @@ void upheap(Node *A, int k) {
     Node v;
     v = A[k];
 
-    while( k > 1 && ( v.count < A[k/2].count || ( v.count == A[k/2].count && v.word > A[k/2].word ) ) ) { //ヒープ条件の確認（Ex02とほぼ同じ）
+    while( k > 1 && v.count <= A[k/2].count /*|| ( v.count == A[k/2].count && v.word > A[k/2].word )*/  ) { //ヒープ条件の確認（Ex02とほぼ同じ）
         A[k] = A[k / 2];
         k = k / 2;
     }
