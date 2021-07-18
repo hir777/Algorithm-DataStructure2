@@ -95,7 +95,7 @@ void try(int i, int x, int y) {
                 try(i+1, x1, y1);   
             } else if ( ( abs(x1-startX) + abs(y1-startY) ) == 3 ) {
                 cnt += 1;
-                //if( cnt <= 3 )
+                if( cnt <= 3 )
                     print_knights();      // when the solution has found.
             }
             undo(x1, y1);
