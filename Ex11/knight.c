@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -15,6 +17,7 @@ int h[N][N];
 int cnt = 0;         // The number of possible routes
 int numD = 0;        // The number of unreachable grid
 int NSQR = N * N;    // The square of N
+int startX, startY;
 
 
 // The 'dx[m]' and 'dy[m]' represents the way to move the knight-
@@ -24,7 +27,7 @@ int dx[C] = {2, 1, -1, -2, -2, -1,  1,  2};
 int dy[C] = {1, 2,  2,  1, -1, -2, -2, -1};
 
 
-int try(int, int, int);
+void try(int, int, int);
 void move_to(int, int, int);
 void undo(int, int);
 void print_knights(void);
@@ -51,6 +54,8 @@ int main(void) {
         for( j = 0; j < N; j++ ) {
 
             if( h[i][j] != D ) {
+                startX = i;
+                startY = j;
                 h[i][j] = 1;
                 try(2, i, j);
                 cpy2d(t, h);              // The board h must be made back to the original for the next iteration.
@@ -73,14 +78,12 @@ int main(void) {
 // Return value
 // TRUE:    succeed in finding a solution
 // FALSE:   failed in finding a soultion
-int try(int i, int x, int y) {
+void try(int i, int x, int y) {
     int k = -1;
-    int ok;
     int x1, y1;     // The next destination's x and y coordinate
 
     do {
         k++;
-        ok = FALSE;
         x1 = x + dx[k];
         y1 = y + dy[k];
 
@@ -89,20 +92,15 @@ int try(int i, int x, int y) {
             
             move_to(i, x1, y1);
             if( i < NSQR - numD ) {
-                ok = try(i+1, x1, y1);
-                if( !ok ) 
-                    undo(x1, y1);   // undo the currect selection only if it results in failure     
-            } else {
-                ok = TRUE;
-                cnt++;
-                if( cnt <= 3 )
+                try(i+1, x1, y1);   
+            } else if ( ( abs(x1-startX) + abs(y1-startY) ) == 3 ) {
+                cnt += 1;
+                //if( cnt <= 3 )
                     print_knights();      // when the solution has found.
-                return ok;
             }
+            undo(x1, y1);
         }
     } while( k < C-1 );
-
-    return ok;
 }
 
 
@@ -125,7 +123,7 @@ void print_knights(void) {
     printf("\n");
     for( j = 0; j < N; j++ ) {
         for( i = 0; i < N; i++ ) {
-            printf("%3d", h[i][j]);
+            printf("%3d", h[i][j] );
         }
         printf("\n");
     }
