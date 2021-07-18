@@ -19,7 +19,7 @@ int main() {
   scanf("%d", &n);
 
   queen(1, n);
-  printf("\n");
+  printf("The number of possible patterns to put the queens is %d.\n", count);
 
   return 0;
 }
@@ -74,7 +74,8 @@ void queen(int row, int n) {
       board[row]=column;    //no conflicts so place queen
       
       if( row == n )            //dead end
-        print(n);           //printing the board configuration
+        count++;
+        //print(n);           //printing the board configuration
       else                  //try queen with next position
         queen(row+1, n);
     }
