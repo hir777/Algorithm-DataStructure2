@@ -101,7 +101,7 @@ void try(int i, int x, int y) {
                 try(i+1, x1, y1);   
             } else if ( a != 0 && b != 0 && a + b == 3 ) {  // true only if the route is cyclic
                 cnt += 1;
-                if( cnt <= 3 )
+                if( cnt <= 3 )            // If you want to print out all solution, please comment out this if statement.
                     print_knights();      // when the solution has found.
             }
             undo(x1, y1);
