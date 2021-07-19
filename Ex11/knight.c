@@ -79,7 +79,7 @@ int main(void) {
 // TRUE:    succeed in finding a solution
 // FALSE:   failed in finding a soultion
 void try(int i, int x, int y) {
-    int k = -1;
+    int k = -1, a, b;
     int x1, y1;     // The next destination's x and y coordinate
 
     do {
@@ -91,9 +91,12 @@ void try(int i, int x, int y) {
         if( 0 <= x1 && x1 < N && 0 <= y1 && y1 < N && h[x1][y1] == 0 && h[x1][y1] != D ) {
             
             move_to(i, x1, y1);
+            a = abs(x1-startX);
+            b = abs(y1-startY);
+
             if( i < NSQR - numD ) {
                 try(i+1, x1, y1);   
-            } else if ( ( abs(x1-startX) + abs(y1-startY) ) == 3 ) {
+            } else if ( a != 0 && b != 0 && a + b == 3 ) {  // true only if the route is cyclic
                 cnt += 1;
                 if( cnt <= 3 )
                     print_knights();      // when the solution has found.
