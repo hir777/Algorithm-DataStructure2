@@ -1,3 +1,6 @@
+// Author:  Hiroshi Tasaki
+// ID:      s1270244
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
