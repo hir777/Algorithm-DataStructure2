@@ -28,7 +28,7 @@ int main() {
     }
 
     for( i = -4; i < 3; i++ )
-        printf("MU + %d * SIGMA <= x <= MU + %d * SIGMA  %.3f\n", j, j+1, (double)cnt[i+4] / N);
+        printf("MU + %d * SIGMA <= x <= MU + %d * SIGMA  %.3f\n", i, i+1, (double)cnt[i+4] / N);
 
     return 0;
 }
