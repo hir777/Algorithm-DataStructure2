@@ -37,8 +37,8 @@ int main() {
 double randNPD(double *g1, double *g2) {
     double x1, x2;
 
-    x1 = my_GetRand() / RAND_MAX;
-    x2 = my_GetRand() / RAND_MAX;
+    x1 = (double)my_GetRand() / RAND_MAX;
+    x2 = (double)my_GetRand() / RAND_MAX;
 
     *g1 = sqrt( -2.0 * log(x1) ) * cos( 2.0 * M_PI * x2 );
     *g2 = sqrt( -2.0 * log(x2) ) * sin( 2.0 * M_PI * x2 );
