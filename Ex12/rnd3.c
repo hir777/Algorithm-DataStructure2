@@ -31,10 +31,16 @@ int main() {
 
     init_rnd();
 
-    for(i = 0; i < 100; i++) {
-        getrand = next_rnd3();
-        printf("%d: %d\n", i + 1, getrand);
-    }
+    for(i = 0; i < 1000; i++) {
+         getrand = next_rnd3();
+         getrand %= 30;
+         if( 0 <= getrand && getrand <= 29 )
+             data[getrand]++;
+         //printf("%d: %d\n", i + 1, getrand);
+     }
+
+    for(i=0;i<30;i++) printf("%d ",data[i]); // sample for listing outputs
+    printf("\n");
 
     return 0;
 }
