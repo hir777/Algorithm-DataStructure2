@@ -6,7 +6,7 @@
 #define MU 0
 #define N 1000000
 
-double randNPD(double *, double *);
+void randNPD(double *, double *);
 extern void my_srand();
 extern int my_GetRand();
 
@@ -34,7 +34,7 @@ int main() {
 }
 
 
-double randNPD(double *g1, double *g2) {
+void randNPD(double *g1, double *g2) {
     double x1, x2;
 
     x1 = (double)my_GetRand() / RAND_MAX;
