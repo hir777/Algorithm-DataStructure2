@@ -31,7 +31,7 @@ int main() {
     }
 
     for( i = -4; i <= 3; i++ ) {
-        printf("MU + %d * SIGMA <= x <= MU + %d * SIGMA  cnt : %d  distribution rate: %.3f%%\n", i, i+1, cnt[i+4], (double)cnt[i+4] / (N*2) * 100 );
+        printf("MU + %3d * SIGMA <= x <= MU + %3d * SIGMA  cnt : %8d  rate: %.3f %%\n", i, i+1, cnt[i+4], ((double)cnt[i+4] / (N*2)) * 100 );
     }
 
     return 0;
@@ -43,8 +43,8 @@ int main() {
 void randNPD(double *g1, double *g2) {
     double x1, x2;
 
-    x1 = (double)my_GetRand() / (double)RAND_MAX;
-    x2 = (double)my_GetRand() / (double)RAND_MAX;
+    x1 = (double)my_GetRand() / RAND_MAX;
+    x2 = (double)my_GetRand() / RAND_MAX;
 
     *g1 = sqrt( -2.0 * log(x1) ) * cos( 2.0 * M_PI * x2 );
     *g2 = sqrt( -2.0 * log(x1) ) * sin( 2.0 * M_PI * x2 );
