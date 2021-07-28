@@ -8,11 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-
-  [ Complete Here!! (Prototype declarations)]
-
-*/
 int Fermat_test(int);
 
 int main(int argc, char *argv[]) {
@@ -35,7 +30,7 @@ int main(int argc, char *argv[]) {
         exit(0);
     }
 
-    /* [ Complete Here!! (Initialize the seed of your random number generator) ] */
+    //Initialize the seed of your random number generator
     my_srand();
 
     for(i = 0; i < n; i++) {
@@ -71,24 +66,22 @@ int Fermat_test(int P) {
     // a^{p-1}の底を乱数で生成して初期化
     // つまり、2からp-2までの乱数でAを初期化
 
-    /* [ Complete Here!! ] */
     A = my_GetRand() % (P-3) + 2;
     x = A;
     for( i = n - 2; i >= 0; i-- ) {
-        y = x * x % P;                    /* [ Complete Here!! ] */
-            if( y == 1 && x != 1 && x != P-1 ) return 0;/* [ Complete Here!! ] */
+        y = x * x % P;                    
+            if( y == 1 && x != 1 && x != P-1 ) return 0;
 
             if(((P - 1) & (1 << i)) != 0){
                 // b[i]==1
-                y = y * A % P; /* [ Complete Here!! ] */
+                y = y * A % P;
             }
 
-        /* [ Complete Here!! ] */
        x = y;
     }
 
     if( y == 1 )
         return 1;
     else
-        return 0;   /* [ Complete Here!! ] */
+        return 0;
 }
