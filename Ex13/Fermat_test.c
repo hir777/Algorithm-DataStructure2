@@ -76,7 +76,7 @@ int Fermat_test(int P) {
     x = A;
     for( i = n - 2; i >= 0; i-- ) {
         y = x * x % P;                    /* [ Complete Here!! ] */
-            if( y == 1 && x != 1 && x != P-1 ) return 1;/* [ Complete Here!! ] */
+            if( y == 1 && x != 1 && x != P-1 ) return 0;/* [ Complete Here!! ] */
 
             if(((P - 1) & (1 << i)) != 0){
                 // b[i]==1
@@ -88,7 +88,7 @@ int Fermat_test(int P) {
     }
 
     if( y == 1 )
-        return 0;
+        return 1;
     else
-        return 1;    /* [ Complete Here!! ] */
+        return 0;   /* [ Complete Here!! ] */
 }
